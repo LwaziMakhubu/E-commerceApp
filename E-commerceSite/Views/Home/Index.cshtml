@@ -1,0 +1,43 @@
+﻿@model List<ECommerceApp.Models.Product>
+
+<h1>Product Listing</h1>
+
+<form method="get" asp-controller="Home" asp-action="Index">
+    <select name="category" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Home Appliances">Home Appliances</option>
+    </select>
+</form>
+
+<div class="product-list">
+    @foreach (var product in Model)
+    {
+        <div class="product-item">
+            <img src="@product.ImageUrl" alt="@product.Name" />
+            <h2>@product.Name</h2>
+            <p>@product.Description</p>
+            <p>Price: @product.Price</p>
+            <p>Category: @product.Category</p>
+        </div>
+    }
+</div>
+
+<style>
+    .product-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .product-item {
+        border: 1px solid #ccc;
+        padding: 16px;
+        margin: 16px;
+        width: calc(33.333% - 32px);
+        box-sizing: border-box;
+    }
+    .product-item img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
